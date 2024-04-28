@@ -1,2 +1,3 @@
 # calculate_sample
-計算アプリのサンプル
+
+Flutter_計算アプリのサンプル
