@@ -22,18 +22,6 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-// dart-define を入れる変数を宣言しています。
-def dartDefines = [:];
-if (project.hasProperty('dart-defines')) {
-    // カンマ区切りかつBase64でエンコードされている dart-defines をデコードして変数に格納します。
-    dartDefines = dartDefines + project.property('dart-defines')
-            .split(',')
-            .collectEntries { entry ->
-                def pair = new String(entry.decodeBase64(), 'UTF-8').split('=')
-                [(pair.first()): pair.last()]
-            }
-}
-
 android {
     namespace "com.example.calculate_sample"
     compileSdk flutter.compileSdkVersion
@@ -61,8 +49,6 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        applicationId "${dartDefines.appId}"
-        resValue "string", "app_name", "${dartDefines.appName}"
     }
 
     buildTypes {
